@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // Defines what 1rem is
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.scroll-anchor {
+  overflow-anchor: auto;
+  /* anchor nodes are required to have non-zero area */
+  height: 1px;
+}

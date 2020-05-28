@@ -1,0 +1,39 @@
+
+.header {
+  height: 98vh;
+  border-radius: 2rem 2rem 0 0;
+  position: relative;
+
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary, 0.8),
+      rgba($color-secondary, 0.8)
+    ),
+    url('../img/hide_the_pain.jpg');
+  background-size: cover;
+  background-position: top;
+
+  clip-path: polygon(0% 0%, 100% 0%, 100% 96vh, 50% 100%, 0% 96vh);
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 2rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &__btn--start-chatting {
+    animation: moveInTop 1s ease-out 0.75s backwards;
+  }
+}

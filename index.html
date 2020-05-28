@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/icon-font.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.ico" />
+    <script src="index.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="container">
+      <header class="header">
+        <div class="header__logo-box">
+          <img src="img/texta.svg" alt="TEXTA Logo" class="header__logo" />
+        </div>
+
+        <div class="header__text-box">
+          <h1 class="heading-primary">
+            <span class="heading-primary--main">Rasa Chatbot Demo</span>
+            <span class="heading-primary--sub">
+              Machine Learning Powered Chatbot</span
+            >
+          </h1>
+
+          <a
+            href="#chatInput"
+            class="btn btn--white header__btn--start-chatting"
+            >Start chatting</a
+          >
+        </div>
+      </header>
+      <section>
+        <div class="chatbox" id="chatbox">
+          <template id="receiverMessageTemplate">
+            <div class="clearfix chatbox__message-wrapper">
+              <div class="chatbox__message chatbox__message--received">
+                <span class="chatbox__message__text" id="chatboxReceiverMessage">
+                  Hey how you doin
+                </span>
+              </div>
+            </div>
+          </template>
+          <template id="senderMessageTemplate">
+            <div class="clearfix chatbox__message-wrapper">
+              <div class="chatbox__message chatbox__message--sent">
+                <span class="chatbox__message__text" id="chatboxSenderMessage">
+                  Time is money pal
+                </span>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="scroll-anchor" id="anchor"></div>
+      </section>
+      <section>
+        <form id="sendMessageForm" class="chat-form">
+          <input
+            required
+            minlength="1"
+            maxlength="150"
+            autocomplete="off"
+            name="message"
+            class="chat-form__input--input"
+            type="text"
+            placeholder="Send a message"
+            id="chatInput"
+          />
+          <input
+            class="form-btn chat-form__input--submit"
+            type="submit"
+            value="Send"
+          />
+        </form>
+        <span class="hint" id="messageLenHint">0</span><span class="hint"> / 150</span>
+      </section>
+    </section>
+  </body>
+</html>

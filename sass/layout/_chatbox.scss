@@ -1,0 +1,39 @@
+.chatbox {
+  overflow-anchor: none;
+
+  margin-top: 3rem;
+  border-radius: 1rem;
+  border: solid 0.1rem rgba($color-grey-dark, 0.3);
+  min-height: 80vh;
+  max-height: 80vh;
+
+  overflow: auto;
+  padding: 2rem;
+
+  
+  &__message {
+    &-wrapper {
+      padding-bottom: 1em;
+    }
+
+    max-width: 50%;
+    padding: 0.5rem 1rem;
+    color: $color-white;
+
+    &--received {
+      float: left;
+      border-radius: 0.3rem 2rem 2rem 2rem;
+      background-color: $color-primary;
+    }
+    
+    &--sent {
+      float: right;
+      border-radius: 2rem 0.3rem 2rem 2rem;
+      background-color: $color-secondary;
+    }
+
+    &__text {
+      font-size: 1.7rem;
+    }
+  }
+}
