@@ -8,3 +8,7 @@ RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook';
 // Generate random sender id
 SENDER_ID = Math.random().toString(36).substring(7); 
 ```
+
+# Example video:
+
+https://streamable.com/o64igo
