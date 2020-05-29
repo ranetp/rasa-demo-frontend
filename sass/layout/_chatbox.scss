@@ -1,6 +1,4 @@
 .chatbox {
-  overflow-anchor: none;
-
   margin-top: 3rem;
   border-radius: 1rem;
   border: solid 0.1rem rgba($color-grey-dark, 0.3);
@@ -22,7 +20,7 @@
 
     &--received {
       float: left;
-      border-radius: 0.3rem 2rem 2rem 2rem;
+      border-radius: 0.3rem 1rem 1rem 1rem;
       background-color: $color-primary;
     }
     
@@ -33,6 +31,7 @@
     }
 
     &__text {
+      white-space: pre;
       font-size: 1.7rem;
     }
   }

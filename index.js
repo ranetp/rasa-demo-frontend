@@ -1,3 +1,15 @@
+RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook';
+SENDER_ID = 'user';
+
+async function postData(url = '', data = {}) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
 window.addEventListener('load', function () {
   const chatInput = document.getElementById('chatInput');
   const chatInputLenIndicator = document.getElementById('messageLenHint');
@@ -5,30 +17,6 @@ window.addEventListener('load', function () {
   chatInput.addEventListener('input', function (event) {
     chatInputLenIndicator.innerHTML = chatInput.value.length;
   });
-
-  function sendData(form) {
-    const XHR = new XMLHttpRequest();
-    // Set up our request
-    XHR.open(
-      'POST',
-      'https://webhook.site/0aa678e0-be17-40e4-a6cf-6315cd015554'
-    );
-    XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    // Bind the FormData object and the form element
-    const FD = new FormData(form);
-
-    XHR.onload = function () {
-      if (XHR.status === 200) {
-        alert('Success');
-      } else if (XHR.status !== 200) {
-        alert('Request failed.  Returned status of ' + XHR.status);
-      }
-    };
-
-    // The data sent is what the user provided in the form
-    XHR.send(FD);
-  }
 
   // Access the form element...
   const sendMessageForm = document.getElementById('sendMessageForm');
@@ -44,9 +32,34 @@ window.addEventListener('load', function () {
 
 function onSubmitted(form) {
   message = form.elements['message'].value;
-  addSentMessage(message);
-  // sendData(form);
+  sendMessage(message);
   form.reset();
+}
+
+function sendMessage(message, payload = '') {
+  // Separate message/payload, as sometimes you want to send the server
+  // a value that isn't the same as the message you want to display,
+  // eg in the case of buttons.
+  if (!payload) {
+    // If not separate payload is defined, set the payload as the message.
+    payload = message;
+  }
+
+  addSentMessage(message);
+
+  data = {
+    sender: SENDER_ID,
+    message: payload,
+  };
+
+  postData(RASA_API_URL, data)
+    .then((data) => {
+      console.log(data);
+      addReceivedMessages(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 function addSentMessage(message) {
@@ -58,15 +71,42 @@ function addSentMessage(message) {
   // Get the chatbox and append the message to it
   const chatBox = document.getElementById('chatbox');
   chatBox.appendChild(clone);
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function addReceivedMessage(message) {
-  // Get the sender message template and clone it
-  var temp = document.getElementById('receiverMessageTemplate');
-  var clone = temp.content.cloneNode(true);
-  clone.getElementById('chatboxReceiverMessage').textContent = message;
-
-  // Get the chatbox and append the message to it
+function addReceivedMessages(data) {
+  // Get the sender message/button templates and clone/append them
   const chatBox = document.getElementById('chatbox');
-  chatBox.appendChild(clone);
+
+  const messageTemplate = document.getElementById('receiverMessageTemplate');
+
+  const buttonTemplate = document.getElementById('responseButtonTemplate');
+
+  data.forEach((message) => {
+    messageClone = messageTemplate.content.cloneNode(true);
+    messageClone.getElementById('chatboxReceiverMessage').textContent =
+      message.text;
+    chatBox.appendChild(messageClone);
+
+    if (message.buttons) {
+      message.buttons.forEach((button) => {
+        buttonClone = buttonTemplate.content.cloneNode(true);
+        buttonClone.getElementById('responseButton').textContent = button.title;
+        buttonClone.getElementById('responseButton').onclick = function () { onClickSuggestionButton(button) };
+        chatBox.appendChild(buttonClone);
+      });
+    }
+  });
+
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+
+function onClickSuggestionButton(button) {
+  sendMessage(button.title, button.payload);
+
+  // Because there shouldn't be any after clicking a button, remove all the buttons from the chat 
+  document.querySelectorAll('#responseButton').forEach(buttonNode => {
+    buttonNode.remove()
+  });
 }

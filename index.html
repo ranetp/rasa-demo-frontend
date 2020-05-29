@@ -8,7 +8,6 @@
       href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/icon-font.css" />
     <link rel="stylesheet" href="css/styles.css" />
 
     <link rel="shortcut icon" type="image/png" href="img/favicon.ico" />
@@ -33,7 +32,7 @@
 
           <a
             href="#chatInput"
-            class="btn btn--white header__btn--start-chatting"
+            class="btn--link btn--link--white header__btn--start-chatting"
             >Start chatting</a
           >
         </div>
@@ -43,23 +42,28 @@
           <template id="receiverMessageTemplate">
             <div class="clearfix chatbox__message-wrapper">
               <div class="chatbox__message chatbox__message--received">
-                <span class="chatbox__message__text" id="chatboxReceiverMessage">
+                <span class="chatbox__message__text break-words" id="chatboxReceiverMessage">
                   Hey how you doin
                 </span>
               </div>
             </div>
           </template>
+          <template id="responseButtonTemplate">
+            <div class="clearfix chatbox__message-wrapper">
+              <button class="btn btn--chat-choice break-words" type="button"
+              id="responseButton"></button>
+            </div>
+          </template>
           <template id="senderMessageTemplate">
             <div class="clearfix chatbox__message-wrapper">
               <div class="chatbox__message chatbox__message--sent">
-                <span class="chatbox__message__text" id="chatboxSenderMessage">
+                <span class="chatbox__message__text break-words" id="chatboxSenderMessage">
                   Time is money pal
                 </span>
               </div>
             </div>
           </template>
         </div>
-        <div class="scroll-anchor" id="anchor"></div>
       </section>
       <section>
         <form id="sendMessageForm" class="chat-form">
@@ -75,7 +79,7 @@
             id="chatInput"
           />
           <input
-            class="form-btn chat-form__input--submit"
+            class="btn btn--form chat-form__input--submit"
             type="submit"
             value="Send"
           />

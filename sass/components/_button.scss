@@ -1,4 +1,4 @@
-.btn {
+.btn--link {
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -49,28 +49,36 @@
   }
 }
 
-.form-btn {
+
+.btn {
   color: $color-white;
   border: none;
   border-radius: 3rem;
-
+  cursor: pointer;
+  
   background-size: 100%;
   background-image: linear-gradient(
     to right bottom,
     rgba($color-primary, 0.8),
     rgba($color-secondary, 0.8)
   );
-
+  
   transition: all 0.01s;
   transition: background-size 0.3s ease-in-out;
 
   &:hover {
-    cursor: pointer;
     background-size: 300%;
   }
   
   &:active {
     transform: translateY(0.1rem);
-    box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+    box-shadow: 0 1rem 1rem rgba($color-black, 0.1);
   }
+  
+  &--chat-choice {
+    padding: 1rem 1rem;
+    display: inline-block;
+    margin: 1rem 0.3rem;
+  }
+
 }

@@ -3,7 +3,6 @@ body {
   font-weight: 400;
   line-height: 1.7;
   color: $color-grey-dark;
-  word-break: break-all;
 }
 
 .heading-primary {
@@ -31,4 +30,9 @@ body {
     animation-delay: 0.3s;
     opacity: 0;
   }
+}
+
+
+.break-words {
+  word-break: break-all;
 }

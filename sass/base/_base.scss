@@ -25,9 +25,3 @@ body {
 .clearfix {
   overflow: auto;
 }
-
-.scroll-anchor {
-  overflow-anchor: auto;
-  /* anchor nodes are required to have non-zero area */
-  height: 1px;
-}
