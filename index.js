@@ -1,5 +1,6 @@
 RASA_API_URL = 'http://localhost:5005/webhooks/rest/webhook';
-SENDER_ID = Math.random().toString(36).substring(7);
+// Generate random sender id
+SENDER_ID = Math.random().toString(36).substring(7); 
 
 console.log(`Generated random sender id: ${SENDER_ID}`);
 
